@@ -1,6 +1,10 @@
-import { View } from "react-native"
 import {FontProvider} from "./Font"
+import { AuthProvider } from "./Auth";
 
 export function AppProvider({ children }) {
-    return <FontProvider>{children}</FontProvider>;
+    return (
+        <FontProvider>
+        <AuthProvider>{children}</AuthProvider>
+        </FontProvider>
+    );
 }
