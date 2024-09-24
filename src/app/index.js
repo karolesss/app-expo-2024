@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, BackHandler } from "react-native";
 import { useAuth } from "../hooks/Auth";
 import { router } from "expo-router";
 
@@ -9,7 +9,6 @@ export default function App() {
   const handleEntrarSuper = async () => {
     try {
       await signIn({ email: "super@email.com", password: "Super123" })
-      router.replace("/");
     } catch (error) {
       console.log(e)
     }
@@ -34,7 +33,8 @@ export default function App() {
           signIn({ email: "user@email.com", password: "User123" })
         }
       />
-      <Button title="Signout" onPress={() => signOut()} />
+      <Button title="Sobre" onPress={()=>router.push("/about")}/>
+      <Button title="Sair do Aplicativo" onPress={() => BackHandler.exitApp()}/>
       <StatusBar style="auto" />
     </View>
   );
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    gap:15,
   },
   title: {
     fontFamily: "fonte1",
